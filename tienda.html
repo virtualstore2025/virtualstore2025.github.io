@@ -6,9 +6,61 @@
     <title>Tienda Virtual</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        
-        /* Estilo general */
-        body {
+
+
+
+.price {
+        font-size: 18px;
+        margin-top: 5px;
+    }
+    .discount-price {
+        font-weight: bold;
+        color: green;
+    }
+    .calces {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 10px;
+    }
+    .calces span {
+        background-color: #f0f0f0;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .calces span:hover {
+        background-color: #dcdcdc;
+    }
+    .whatsapp-button {
+        background-color: #25d366; /* Color de WhatsApp */
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        border: none;
+        display: inline-block;
+        text-align: center;
+    }
+    .whatsapp-button:hover {
+        background-color: #128c7e;
+    }
+    #btn-ver-mas {
+        padding: 8px 20px;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    #btn-ver-mas:hover {
+        background-color: #0056b3;
+    }
+
+body {
             font-family: Arial, sans-serif; 
             margin: 0;
             padding: 0;
@@ -148,6 +200,35 @@
     height: auto;
 }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .product {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        header, footer {
+            width: 100%;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -170,7 +251,7 @@
         let tasaCambio = 7800;
         
         let productos = [
-            { img: "img/producto1.png", nombre: "LOTTO SLAM 2.0 DAMA", precio: 50.00, clase: "small-img", talles: [37, 38, 39] },
+        { img: "img/producto1.png", nombre: "LOTTO SLAM 2.0 DAMA", precio: 50.00, clase: "small-img", talles: [37, 38, 39] },
             { img: "img/producto2.png", nombre: "LOTTO SPEEDRIDE 400 II W GRAY/PINK DAMA", precio: 48.800, clase: "small-img", talles: [35, 36, 37, 38, 39] },
             { img: "img/producto3.png", nombre: "LOTTO SPEEDRIDE 400 II W PINK/BLACK DAMA", precio: 48.800, talles: [36, 37, 38, 39] },
             { img: "img/producto4.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/PINK  DAMA", precio: 48.800, talles: [37, 38, 39] },
@@ -212,62 +293,6 @@
         cargarProductos();
     </script>
     
-    
-    
-    
-    <style>
-        .price {
-            font-size: 18px;
-            margin-top: 5px;
-        }
-        .discount-price {
-            font-weight: bold;
-            color: green;
-        }
-        .calces {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin-top: 10px;
-        }
-        .calces span {
-            background-color: #f0f0f0;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .calces span:hover {
-            background-color: #dcdcdc;
-        }
-        .whatsapp-button {
-            background-color: #25d366; /* Color de WhatsApp */
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-            border: none;
-            display: inline-block;
-            text-align: center;
-        }
-        .whatsapp-button:hover {
-            background-color: #128c7e;
-        }
-        #btn-ver-mas {
-            padding: 8px 20px;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        #btn-ver-mas:hover {
-            background-color: #0056b3;
-        }
-    </style>
-    
     <footer>
         <div class="footer-container">
             <p>&copy; 2025 Virtual Store. Todos los derechos reservados.</p>
@@ -284,7 +309,6 @@
             </div>
         </div>
     </footer>
-    
 
 </body>
 </html>

@@ -108,22 +108,6 @@
         }
         .product button:hover { background-color: #0056b3; transform: translateY(-3px); }
 
-        /* Botón "Ver más" */
-        .ver-mas-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .ver-mas {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .ver-mas:hover { background-color: #218838; transform: scale(1.1); }
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -169,7 +153,7 @@
 <body>
 
     <!-- Encabezado -->
-    <header>
+    <header> 
         <div class="logo-container">
             <img src="img/logotienda.png" alt="Logo" class="logo">
             <h1>Virtual Store</h1>
@@ -178,45 +162,37 @@
             <li><a href="index.html">Inicio</a></li>
         </ul>
     </header>
-
+    
     <!-- Productos -->
     <section class="products" id="product-list"></section>
-
-    <!-- Botón "Ver más" -->
-    <div class="ver-mas-container">
-        <button class="ver-mas" id="btn-ver-mas" onclick="cargarMasProductos()">Ver más</button>
-    </div>
-
+    
     <script>
-        let tasaCambio = 7800; // 1 USD = 7,800 Gs (Ajusta según la tasa actual)
-    
+        let tasaCambio = 7800;
+        
         let productos = [
-            { img: "img/producto1.png", nombre: "LOTTO SLAM 2.0 DAMA", precio: 50.00, clase: "small-img", talles: [, 37, 38,39] },
-            { img: "img/producto2.png", nombre: "LOTTO SPEEDRIDE 400 II W GRAY/PINK DAMA", precio: 48.800, clase: "small-img", talles: [35,36, 37, 38, 39] },
-            { img: "img/producto3.png", nombre: "LOTTO SPEEDRIDE 400 II W PINK/BLACK DAMA", precio: 48.800, talles: [36,37, 38, 39,] },
-            { img: "img/producto4.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/PINK  DAMA", precio: 48.800, talles: [37,38, 39,] },
-            { img: "img/producto5.png", nombre: "LOTTO SLAM 2.0 UNISEX", precio: 50.00, talles: [ 35, 36,37,38,39, 40, 41, 42,43] },
+            { img: "img/producto1.png", nombre: "LOTTO SLAM 2.0 DAMA", precio: 50.00, clase: "small-img", talles: [37, 38, 39] },
+            { img: "img/producto2.png", nombre: "LOTTO SPEEDRIDE 400 II W GRAY/PINK DAMA", precio: 48.800, clase: "small-img", talles: [35, 36, 37, 38, 39] },
+            { img: "img/producto3.png", nombre: "LOTTO SPEEDRIDE 400 II W PINK/BLACK DAMA", precio: 48.800, talles: [36, 37, 38, 39] },
+            { img: "img/producto4.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/PINK  DAMA", precio: 48.800, talles: [37, 38, 39] },
+            { img: "img/producto5.png", nombre: "LOTTO SLAM 2.0 UNISEX", precio: 50.00, talles: [35, 36, 37, 38, 39, 40, 41, 42, 43] },
             { img: "img/producto6.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/RED CABALLERO", precio: 48.800, talles: [40, 41, 42, 43] },
-            { img: "img/producto7.png", nombre: "LOTTO SPEEDRIDE 400 II W ALL BLACK CABALLERO", precio: 48.800, talles: [ 40,41,42,43,] },
-            { img: "img/producto8.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/ORANGE CABALLERO", precio: 48.800, talles: [40, 41,42,43,] },
-            { img: "img/producto9.png", nombre: " STRET LOTTO W CABALLERO", precio: 50.00, talles: [40,41,42,43] },
-            { img: "img/producto9.png", nombre: " STRET LOTTO W DAMA", precio: 50.00, talles: [36, 37, 38, 39,40] },
-            { img: "img/producto10.png", nombre: "PUMA ORBITA PROFECIONAL", precio: 64.00 } // Este producto NO tendrá talles
+            { img: "img/producto7.png", nombre: "LOTTO SPEEDRIDE 400 II W ALL BLACK CABALLERO", precio: 48.800, talles: [40, 41, 42, 43] },
+            { img: "img/producto8.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/ORANGE CABALLERO", precio: 48.800, talles: [40, 41, 42, 43] },
+            { img: "img/producto9.png", nombre: " STRET LOTTO W CABALLERO", precio: 50.00, talles: [40, 41, 42, 43] },
+            { img: "img/producto9.png", nombre: " STRET LOTTO W DAMA", precio: 50.00, talles: [36, 37, 38, 39, 40] },
+            { img: "img/producto10.png", nombre: "PUMA ORBITA PROFECIONAL", precio: 64.00 }
         ];
-    
-        let indice = 0;
-        function cargarMasProductos() {
+        
+        function cargarProductos() {
             let contenedor = document.getElementById("product-list");
-            for (let i = 0; i < 3 && indice < productos.length; i++, indice++) {
-                let prod = productos[indice];
+            productos.forEach(prod => {
                 let precioDescuentoGs = Math.round(prod.precio * 0.8 * tasaCambio / 1000) * 1000;
                 let precioDescuentoGsFormateado = precioDescuentoGs.toLocaleString("es-PY");
                 let numeroWhatsApp = "+595994946406";
                 let mensajeWhatsApp = encodeURIComponent(`¡Hola! Estoy interesado en comprar el ${prod.nombre} por ₲${precioDescuentoGsFormateado}.`);
-    
-                // Generar los talles dinámicamente, si existen
+        
                 let tallesHTML = prod.talles ? prod.talles.map(talle => `<span>${talle}</span>`).join('') : "";
-    
+        
                 let div = document.createElement("div");
                 div.classList.add("product");
                 div.innerHTML = `
@@ -230,12 +206,12 @@
                         <button class="whatsapp-button">Hacer pedido por WhatsApp</button>
                     </a>`;
                 contenedor.appendChild(div);
-            }
-            if (indice >= productos.length) document.getElementById("btn-ver-mas").style.display = "none";
+            });
         }
-    
-        cargarMasProductos();
+        
+        cargarProductos();
     </script>
+    
     
     
     

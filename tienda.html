@@ -1,0 +1,314 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Virtual</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        
+        /* Estilo general */
+        body {
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        /* Encabezado */
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px; /* Ajusta el tamaño según lo necesites */
+            height: auto;
+            margin-right: 15px; /* Espacio entre el logo y el texto */
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        /* Menú */
+        .menu {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .menu li { margin: 0 15px; }
+        .menu li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            padding: 10px;
+            background-color: #007BFF;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .menu li a:hover { background-color: #0056b3; transform: scale(1.1); }
+
+        /* Productos */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .product {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .product img:hover { transform: scale(1.05); }
+        .product h2 { font-size: 1.2em; margin: 10px 0; color: #333; }
+        .product .price { color: #007BFF; font-weight: bold; margin: 10px 0; }
+        .product button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .product button:hover { background-color: #0056b3; transform: translateY(-3px); }
+
+        /* Botón "Ver más" */
+        .ver-mas-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .ver-mas {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .ver-mas:hover { background-color: #218838; transform: scale(1.1); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products { grid-template-columns: 1fr; }
+            .menu { flex-direction: column; align-items: center; }
+        }
+
+        footer {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .footer-container a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer-container a:hover {
+            text-decoration: underline;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+        .small-img {
+    width: 1000px; /* Ajusta el tamaño según lo que necesites */
+    height: auto;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="logo-container">
+            <img src="img/logotienda.png" alt="Logo" class="logo">
+            <h1>Virtual Store</h1>
+        </div>
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+        </ul>
+    </header>
+
+    <!-- Productos -->
+    <section class="products" id="product-list"></section>
+
+    <!-- Botón "Ver más" -->
+    <div class="ver-mas-container">
+        <button class="ver-mas" id="btn-ver-mas" onclick="cargarMasProductos()">Ver más</button>
+    </div>
+
+    <script>
+        let tasaCambio = 7800; // 1 USD = 7,800 Gs (Ajusta según la tasa actual)
+    
+        let productos = [
+            { img: "img/producto1.png", nombre: "LOTTO SLAM 2.0 DAMA", precio: 50.00, clase: "small-img", talles: [, 37, 38,39] },
+            { img: "img/producto2.png", nombre: "LOTTO SPEEDRIDE 400 II W GRAY/PINK DAMA", precio: 48.800, clase: "small-img", talles: [35,36, 37, 38, 39] },
+            { img: "img/producto3.png", nombre: "LOTTO SPEEDRIDE 400 II W PINK/BLACK DAMA", precio: 48.800, talles: [36,37, 38, 39,] },
+            { img: "img/producto4.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/PINK  DAMA", precio: 48.800, talles: [37,38, 39,] },
+            { img: "img/producto5.png", nombre: "LOTTO SLAM 2.0 UNISEX", precio: 50.00, talles: [ 35, 36,37,38,39, 40, 41, 42,43] },
+            { img: "img/producto6.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/RED CABALLERO", precio: 48.800, talles: [40, 41, 42, 43] },
+            { img: "img/producto7.png", nombre: "LOTTO SPEEDRIDE 400 II W ALL BLACK CABALLERO", precio: 48.800, talles: [ 40,41,42,43,] },
+            { img: "img/producto8.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/ORANGE CABALLERO", precio: 48.800, talles: [40, 41,42,43,] },
+            { img: "img/producto9.png", nombre: " STRET LOTTO W CABALLERO", precio: 50.00, talles: [40,41,42,43] },
+            { img: "img/producto9.png", nombre: " STRET LOTTO W DAMA", precio: 50.00, talles: [36, 37, 38, 39,40] },
+            { img: "img/producto10.png", nombre: "PUMA ORBITA PROFECIONAL", precio: 64.00 } // Este producto NO tendrá talles
+        ];
+    
+        let indice = 0;
+        function cargarMasProductos() {
+            let contenedor = document.getElementById("product-list");
+            for (let i = 0; i < 3 && indice < productos.length; i++, indice++) {
+                let prod = productos[indice];
+                let precioDescuentoGs = Math.round(prod.precio * 0.8 * tasaCambio / 1000) * 1000;
+                let precioDescuentoGsFormateado = precioDescuentoGs.toLocaleString("es-PY");
+                let numeroWhatsApp = "+595994946406";
+                let mensajeWhatsApp = encodeURIComponent(`¡Hola! Estoy interesado en comprar el ${prod.nombre} por ₲${precioDescuentoGsFormateado}.`);
+    
+                // Generar los talles dinámicamente, si existen
+                let tallesHTML = prod.talles ? prod.talles.map(talle => `<span>${talle}</span>`).join('') : "";
+    
+                let div = document.createElement("div");
+                div.classList.add("product");
+                div.innerHTML = `
+                    <img src="${prod.img}" alt="${prod.nombre}" class="${prod.clase ? prod.clase : ''}">
+                    <h2>${prod.nombre}</h2>
+                    <div class="price">
+                        <span class="discount-price">₲${precioDescuentoGsFormateado}</span>
+                    </div>
+                    ${tallesHTML ? `<div class="calces">${tallesHTML}</div>` : ""} 
+                    <a href="https://wa.me/${numeroWhatsApp}?text=${mensajeWhatsApp}" target="_blank">
+                        <button class="whatsapp-button">Hacer pedido por WhatsApp</button>
+                    </a>`;
+                contenedor.appendChild(div);
+            }
+            if (indice >= productos.length) document.getElementById("btn-ver-mas").style.display = "none";
+        }
+    
+        cargarMasProductos();
+    </script>
+    
+    
+    
+    <style>
+        .price {
+            font-size: 18px;
+            margin-top: 5px;
+        }
+        .discount-price {
+            font-weight: bold;
+            color: green;
+        }
+        .calces {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .calces span {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .calces span:hover {
+            background-color: #dcdcdc;
+        }
+        .whatsapp-button {
+            background-color: #25d366; /* Color de WhatsApp */
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .whatsapp-button:hover {
+            background-color: #128c7e;
+        }
+        #btn-ver-mas {
+            padding: 8px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        #btn-ver-mas:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Virtual Store. Todos los derechos reservados.</p>
+            <p>📧 Correo: <a href="mailto:infovirtualstore2025@gmail.com">infovirtualstore2025@gmail.com</a></p>
+            <p>📞 Teléfono: <a href="tel:+595994946406">+595 994 946 406</a></p>
+            <p>🕒 Horario de atención: Lunes a Sábado, 09:00 AM - 18:00 PM</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/virtual__storepy?igsh=MXY5b21zZjJzZmdnbw==" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/+595994946406" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+
+</body>
+</html>

@@ -183,31 +183,40 @@
     <!-- Carrusel -->
     <section class="py-5 slide-in">
         <div class="container">
-            <h2 class="text-center mb-4">Productos destacados</h2>
-            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+            <h2 class="text-center mb-4">Productos Destacados</h2>
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                
+                <!-- Indicadores de navegación -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="3"></button>
+                </div>
+    
                 <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <a href="tienda.html" target="_blank">
-                            <img src="img/producto11.png" class="d-block w-100" alt="Producto 2">
-                        </a>
-                    </div>
                     <div class="carousel-item active">
                         <a href="tienda.html" target="_blank">
-                            <img src="img/producto9.png" class="d-block w-100" alt="Producto 1">
-                            
+                            <img src="img/producto9.png" class="d-block w-100 product-img" alt="Producto 1">
                         </a>
                     </div>
                     <div class="carousel-item">
                         <a href="tienda.html" target="_blank">
-                            <img src="img/producto4.png" class="d-block w-100" alt="Producto 2">
+                            <img src="img/producto11.png" class="d-block w-100 product-img" alt="Producto 2">
                         </a>
                     </div>
                     <div class="carousel-item">
                         <a href="tienda.html" target="_blank">
-                            <img src="img/producto3.png" class="d-block w-100" alt="Producto 3">
+                            <img src="img/producto4.png" class="d-block w-100 product-img" alt="Producto 3">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="tienda.html" target="_blank">
+                            <img src="img/producto3.png" class="d-block w-100 product-img" alt="Producto 4">
                         </a>
                     </div>
                 </div>
+    
                 <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
@@ -217,8 +226,60 @@
                     <span class="visually-hidden">Siguiente</span>
                 </button>
             </div>
+    
+            <!-- Información del producto separada del carrusel -->
+            <div class="text-center mt-4">
+                <h5 id="productTitle"> LOTTO STRET W"</h5>
+                <p id="productPrice">312.000 GS</p>
+                <a href="tienda.html" class="btn btn-primary">Comprar ahora</a>
+            </div>
+    
         </div>
     </section>
+    
+    <!-- Estilos corregidos -->
+    <style>
+        .slide-in {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+        }
+    
+        .carousel-inner img {
+            transition: transform 0.4s ease-in-out;
+        }
+    
+        .carousel-inner:hover img {
+            transform: scale(1.05);
+        }
+    
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+    
+    <script>
+        // Información de productos para actualizar dinámicamente
+        const productos = [
+            { titulo: " LOTTO STRET W", precio: "312.000 GS", link: "tienda.html" },
+            { titulo: "PUMA SMASH 3.0 SUPER LOGO", precio: "500.000 GS", link: "tienda.html" },
+            { titulo: "LOTTO SPEEDRIDE 400 II W BLACK/PINK ", precio: "305.000 GS", link: "tienda.html" },
+            { titulo: "LOTTO SPEEDRIDE 400 II W PINK/BLACK ", precio: "305.000 GS", link: "tienda.html" }
+        ];
+    
+        document.getElementById('productCarousel').addEventListener('slid.bs.carousel', function (event) {
+            let index = event.to;
+            document.getElementById('productTitle').innerText = productos[index].titulo;
+            document.getElementById('productPrice').innerText = productos[index].precio;
+            document.querySelector('.btn-primary').href = productos[index].link;
+        });
+    </script>
+    
 
     <!-- Sección de Productos Destacados -->
     <section class="featured-products py-5">
@@ -231,7 +292,7 @@
                         <!-- <div class="discount-tag">30% OFF</div> -->
                         <div class="card-body">
                             <h5 class="card-title">Lotto</h5>
-                            <p class="card-text">CALZADO CASUAL DAMA</p>
+                            <p class="card-text">LOTTO SLAM 2.0 DAMA</p>
                             <a href="tienda.html" class="btn btn-primary">Ver Producto</a>
                         </div>
                     </div>
@@ -242,7 +303,7 @@
                         <!-- <div class="discount-tag">20% OFF</div> -->
                         <div class="card-body">
                             <h5 class="card-title">Lotto</h5>
-                            <p class="card-text">CALZADO DEPORTIVO CABALLERO</p>
+                            <p class="card-text">LOTTO SPEEDRIDE 400 II W BLACK/RED CABALLERO</p>
                             <a href="tienda.html" class="btn btn-primary">Ver Producto</a>
                         </div>
                     </div>
@@ -253,7 +314,7 @@
                         <!-- <div class="discount-tag">15% OFF</div> -->
                         <div class="card-body">
                             <h5 class="card-title">Lotto</h5>
-                            <p class="card-text">CASUAL UNISEX </p>
+                            <p class="card-text">LOTTO SLAM 2.0 UNISEX</p>
                             <a href="tienda.html" class="btn btn-primary">Ver Producto</a>
                         </div>
                     </div>
@@ -285,3 +346,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+

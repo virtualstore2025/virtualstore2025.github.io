@@ -248,56 +248,52 @@ body {
     <section class="products" id="product-list"></section>
     
     <script>
-        let tasaCambio = 7800;
-        
-        let productos = [
-        { img: "img/producto1.png", nombre: "LOTTO SLAM 2.0 DAMA", precio: 50.00, clase: "small-img", talles: [37, 38, 39] },
-            { img: "img/producto2.png", nombre: "LOTTO SPEEDRIDE 400 II W GRAY/PINK DAMA", precio: 48.800, clase: "small-img", talles: [35, 36, 37, 38, 39] },
-            { img: "img/producto3.png", nombre: "LOTTO SPEEDRIDE 400 II W PINK/BLACK DAMA", precio: 48.800, talles: [36, 37, 38, 39] },
-            { img: "img/producto4.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/PINK  DAMA", precio: 48.800, talles: [37, 38, 39] },
-            { img: "img/producto5.png", nombre: "LOTTO SLAM 2.0 UNISEX", precio: 50.00, talles: [35, 36, 37, 38, 39, 40, 41, 42, 43] },
-            { img: "img/producto6.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/RED CABALLERO", precio: 48.800, talles: [40, 41, 42, 43] },
-            { img: "img/producto7.png", nombre: "LOTTO SPEEDRIDE 400 II W ALL BLACK CABALLERO", precio: 48.800, talles: [40, 41, 42, 43] },
-            { img: "img/producto8.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/ORANGE CABALLERO", precio: 48.800, talles: [40, 41, 42, 43] },
-            { img: "img/producto9.png", nombre: " STRET LOTTO W CABALLERO", precio: 50.00, talles: [40, 41, 42, 43] },
-            { img: "img/producto9.png", nombre: " STRET LOTTO W DAMA", precio: 50.00, talles: [36, 37, 38, 39, 40] },
-            { img: "img/producto11.png", nombre: "PUMA SMASH 3.0 SUPER LOGO", precio: 80.10, talles: [40, 41, 42, 43] },
-            { img: "img/producto12.png", nombre: "LOTTO TREORO UNISEX", precio: 48.800, talles: [36,37, 38, ,39, 40, 41, 42, 43] },
-            { img: "img/producto13.png", nombre: "ADIDAS TENIS 70 S", precio:111.400, talles: [40, 41, 42, 43] },
-            { img: "img/producto14.png", nombre: "ADIDAS CORERACER", precio: 73.600, talles: [40, 41, 42, 43] },
-            { img: "img/producto15.png", nombre: "NIKE PROMITA RUNNING ORA", precio: 88.100, talles: [35,36,37,39,40,] },
-            { img: "img/producto16.png", nombre: "NIKE DOWNSHIFTER 13", precio: 97.700 , talles: [40, 41, 42, 43] },
-            { img: "img/producto10.png", nombre: "PUMA ORBITA PROFECIONAL", precio: 56.100  }
+      let productos = [
+    { img: "img/producto1.png", nombre: "LOTTO SLAM 2.0 DAMA", precio: 312000, clase: "small-img", talles: [37, 38, 39] },
+    { img: "img/producto2.png", nombre: "LOTTO SPEEDRIDE 400 II W GRAY/PINK DAMA", precio: 305000, clase: "small-img", talles: [35, 36, 37, 38, 39] },
+    { img: "img/producto3.png", nombre: "LOTTO SPEEDRIDE 400 II W PINK/BLACK DAMA", precio: 305000, talles: [36, 37, 38, 39] },
+    { img: "img/producto4.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/PINK  DAMA", precio: 305000, talles: [37, 38, 39] },
+    { img: "img/producto5.png", nombre: "LOTTO SLAM 2.0 UNISEX", precio: 312000, talles: [35, 36, 37, 38, 39, 40, 41, 42, 43] },
+    { img: "img/producto6.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/RED CABALLERO", precio: 305000, talles: [40, 41, 42, 43] },
+    { img: "img/producto7.png", nombre: "LOTTO SPEEDRIDE 400 II W ALL BLACK CABALLERO", precio: 305000, talles: [40, 41, 42, 43] },
+    { img: "img/producto8.png", nombre: "LOTTO SPEEDRIDE 400 II W BLACK/ORANGE CABALLERO", precio: 305000, talles: [40, 41, 42, 43] },
+    { img: "img/producto9.png", nombre: "STRET LOTTO W CABALLERO", precio: 312000, talles: [40, 41, 42, 43] },
+    { img: "img/producto9.png", nombre: "STRET LOTTO W DAMA", precio: 312000, talles: [36, 37, 38, 39, 40] },
+    { img: "img/producto11.png", nombre: "PUMA SMASH 3.0 SUPER LOGO", precio: 500000, talles: [40, 41, 42, 43] },
+    { img: "img/producto12.png", nombre: "LOTTO TREORO UNISEX", precio: 290000, talles: [36, 37, 38, 39, 40, 41, 42, 43] },
+    { img: "img/producto13.png", nombre: "ADIDAS TENIS 70 S", precio: 695000, talles: [40, 41, 42, 43] },
+    { img: "img/producto14.png", nombre: "ADIDAS CORERACER", precio: 459000, talles: [40, 41, 42, 43] },
+    { img: "img/producto15.png", nombre: "NIKE PROMITA RUNNING ORA", precio: 550000, talles: [40, 41, 42, 43] },
+    { img: "img/producto16.png", nombre: "NIKE DOWNSHIFTER 13", precio: 610000, talles: [40, 41, 42, 43] },
+    { img: "img/producto10.png", nombre: "PUMA ORBITA 2 TB (FIFA QUALITY PRO)", precio: 350000 }
+];
 
-        ];
-        
-        function cargarProductos() {
-            let contenedor = document.getElementById("product-list");
-            productos.forEach(prod => {
-                let precioDescuentoGs = Math.round(prod.precio * 0.8 * tasaCambio / 1000) * 1000;
-                let precioDescuentoGsFormateado = precioDescuentoGs.toLocaleString("es-PY");
-                let numeroWhatsApp = "+595994946406";
-                let mensajeWhatsApp = encodeURIComponent(`¡Hola! Estoy interesado en comprar el ${prod.nombre} por ₲${precioDescuentoGsFormateado}.`);
-        
-                let tallesHTML = prod.talles ? prod.talles.map(talle => `<span>${talle}</span>`).join('') : "";
-        
-                let div = document.createElement("div");
-                div.classList.add("product");
-                div.innerHTML = `
-                    <img src="${prod.img}" alt="${prod.nombre}" class="${prod.clase ? prod.clase : ''}">
-                    <h2>${prod.nombre}</h2>
-                    <div class="price">
-                        <span class="discount-price">₲${precioDescuentoGsFormateado}</span>
-                    </div>
-                    ${tallesHTML ? `<div class="calces">${tallesHTML}</div>` : ""} 
-                    <a href="https://wa.me/${numeroWhatsApp}?text=${mensajeWhatsApp}" target="_blank">
-                        <button class="whatsapp-button">Hacer pedido por WhatsApp</button>
-                    </a>`;
-                contenedor.appendChild(div);
-            });
-        }
-        
-        cargarProductos();
+function cargarProductos() {
+    let contenedor = document.getElementById("product-list");
+    productos.forEach(prod => {
+        let precioFormateado = prod.precio.toLocaleString("es-PY");
+        let numeroWhatsApp = "+595994946406";
+        let mensajeWhatsApp = encodeURIComponent(`¡Hola! Estoy interesado en comprar el ${prod.nombre} por ${precioFormateado}.`);
+
+        let tallesHTML = prod.talles ? prod.talles.map(talle => `<span>${talle}</span>`).join('') : "";
+
+        let div = document.createElement("div");
+        div.classList.add("product");
+        div.innerHTML = `
+            <img src="${prod.img}" alt="${prod.nombre}" class="${prod.clase ? prod.clase : ''}">
+            <h2>${prod.nombre}</h2>
+            <div class="price">
+                <span class="normal-price">${precioFormateado}</span>
+            </div>
+            ${tallesHTML ? `<div class="calces">${tallesHTML}</div>` : ""} 
+            <a href="https://wa.me/${numeroWhatsApp}?text=${mensajeWhatsApp}" target="_blank">
+                <button class="whatsapp-button">Hacer pedido por WhatsApp</button>
+            </a>`;
+        contenedor.appendChild(div);
+    });
+}
+
+cargarProductos();
     </script>
     
     <footer>
